@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react';
 
 import Button from '../../components/Button';
+import Modal from '../../components/Modal';
+import Slider from '../../components/slider';
 import api from '../../services/api'
 import { getImages } from '../../utils/getImages'
-import { Backgoud, Container, ContainerButtons, Info, Poster } from './styles'
-
-
-import Header from '../../components/Header';
-import Slider from '../../components/slider';
+import { Background, Container, ContainerButtons, Info, Poster } from './styles'
 
 
 function Home() {
+    const [showModal, setShowModal] = useState(false)
     const [movie, setMovie] = useState()
     const [topMovies, setTopMovies] = useState()
     const [topSeries, setTopSeries] = useState()
-    const [seriesPopulares, setSeriesPopulares ] = useState()
-    const [pessoasPopulares, setPessoasPopulares ] = useState()
+    const [seriesPopulares, setSeriesPopulares] = useState()
+    const [pessoasPopulares, setPessoasPopulares] = useState()
 
     useEffect(() => {
         async function getMovies() {
@@ -79,11 +78,12 @@ function Home() {
 
 
     return (
-        <>            
+        <>
             {movie && (
-                <Backgoud
-                    img={getImages(movie.backdrop_path)}>
-
+                <Background img={getImages(movie.backdrop_path)}>
+                    {showModal && (
+                        <Modal movieId={movie.id} setShowModal={setShowModal} />
+                    )}
                     <Container>
                         <Info>
                             <h1>{movie.title}</h1>
@@ -91,7 +91,9 @@ function Home() {
 
                             <ContainerButtons>
                                 <Button red={true}>Assista Agora</Button>
-                                <Button red={false}>Assista o Trailer</Button>
+                                <Button onClick={() => setShowModal(true)} red={false}>
+                                    Assista o Trailer
+                                </Button>
                             </ContainerButtons>
                         </Info>
 
@@ -99,7 +101,7 @@ function Home() {
                             <img alt="capa-do-filme" src={getImages(movie.poster_path)} />
                         </Poster>
                     </Container>
-                </Backgoud>
+                </Background>
             )}
             {topMovies && <Slider info={topMovies} title={'Top Filmes'} />}
             {topSeries && <Slider info={topSeries} title={'Top Séries'} />}

@@ -7,8 +7,9 @@ export const Container = styled.div`
    justify-content: center;
    align-items: center;
    
+   
    img{
-      border-radius:30px ;
+      border-radius:25px ;
       width: 230px;
       height: 100%;
    }
