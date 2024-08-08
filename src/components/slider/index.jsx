@@ -5,8 +5,6 @@ import Card from '../card';
 
 function Slider({ info, title }) {
 
-    console.log(info, title);
-
     return (
 
         <Container>

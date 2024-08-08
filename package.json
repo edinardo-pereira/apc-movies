@@ -17,6 +17,22 @@
     "styled-components": "^6.1.12",
     "swiper": "^11.1.9"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "react/jsx-indent": [
+        2,
+        2
+      ],
+      "react/jsx-indent-props": [
+        2,
+        2
+      ]
+    }
+  },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "@types/react": "^18.3.3",

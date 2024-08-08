@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
@@ -15,6 +16,7 @@ function Home() {
     const [topSeries, setTopSeries] = useState()
     const [seriesPopulares, setSeriesPopulares] = useState()
     const [pessoasPopulares, setPessoasPopulares] = useState()
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function getMovies() {
@@ -31,7 +33,6 @@ function Home() {
                 data: { results }
             } = await api.get('/movie/top_rated')
 
-            console.log(results);
             setTopMovies(results)
 
         }
@@ -41,7 +42,6 @@ function Home() {
                 data: { results }
             } = await api.get('/tv/top_rated')
 
-            console.log(results);
             setTopSeries(results)
 
         }
@@ -51,7 +51,6 @@ function Home() {
                 data: { results }
             } = await api.get('/tv/popular')
 
-            console.log(results);
             setSeriesPopulares(results)
 
         }
@@ -61,7 +60,6 @@ function Home() {
                 data: { results }
             } = await api.get('/person/popular')
 
-            console.log(results);
             setPessoasPopulares(results)
 
         }
@@ -90,7 +88,7 @@ function Home() {
                             <p> {movie.overview}</p>
 
                             <ContainerButtons>
-                                <Button red={true}>Assista Agora</Button>
+                                <Button red={true} onClick={() => navigate(`/detalhe/$movie.id`)} >Assista Agora</Button>
                                 <Button onClick={() => setShowModal(true)} red={false}>
                                     Assista o Trailer
                                 </Button>
@@ -98,7 +96,10 @@ function Home() {
                         </Info>
 
                         <Poster>
-                            <img alt="capa-do-filme" src={getImages(movie.poster_path)} />
+                            <img 
+                            alt="capa-do-filme" 
+                            src={getImages(movie.poster_path)} 
+                            />
                         </Poster>
                     </Container>
                 </Background>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    min-height: 50px;
     z-index: 99;
     position: fixed;
     top: 0;
@@ -12,11 +13,11 @@ export const Container = styled.div`
     height: 6%;
     background-color: ${(props) =>
         props.changeBackground ? '#000' : 'transparent'};
-    transition: background-color 0.6s ease-in-out ;
+    transition: background-color 0.8s ease-in-out ;
     
 
     img {
-        width: 10%;
+        width: 15%;
     }
 
 `
@@ -24,7 +25,7 @@ export const Menu = styled.ul`
     display: flex;
     list-style: none;
     gap: 50px;
-    margin-right: 30px;
+    margin-right: 40px;
 
 `
 export const Li = styled.li`
@@ -41,7 +42,7 @@ export const Li = styled.li`
     &::after {
         content: '';
         height: 3px;
-        width: ${(props) => props.isActive ? '100%' : 0};
+        width: ${(props) => (props.isActive ? '100%' : 0)};
         background-color: #189b20;
         position: absolute;
         bottom: 0px;
