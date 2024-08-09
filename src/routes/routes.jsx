@@ -1,11 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 
+import Detail from '../containers/Detail'
 import Home from '../containers/Home'
-import Series from '../containers/Series'
 import Movies from '../containers/Movies'
-import DefaultLayout from "../layout/defaltLayout";
-import Detail from "../containers/Detail";
-
+import Series from '../containers/Series'
+import DefaultLayout from '../layout/defaltLayout';
 
 function Router() {
     return (
@@ -14,7 +13,7 @@ function Router() {
                 <Route path="/" element={<Home />} />
                 <Route path="/filmes" element={<Movies />} />
                 <Route path="/series" element={<Series />} />
-                <Route path="/Detalhe/:id" element={<Detail />} />
+                <Route path="/detalhe/:id" element={<Detail />} />
             </Route>
         </Routes>
     )
